@@ -5,7 +5,7 @@ import time
 import urllib3
 
 urllib3.disable_warnings()
-user=1 #1 if anne is user, 0 if raaf is user
+user=0 #1 if anne is user, 0 if raaf is user
 
 ips =["192.168.2.1","192.168.178.43"] #ips for raaf and anne respectively
 usernames = ["BDvoeSA0fV0VI6xiw1LHLVvUOIj3OABQHUgekwZ8", "su6nCGMRrINN5z0snp9lCl5V3Lzx-n6tPzX889bA"] #usernames for raaf and anne respectively
@@ -70,7 +70,24 @@ def bullyFamily_NameVersion(timeBetweenSwitch, names):
         toggleLightsByName(count%2==0, names)
         time.sleep(timeBetweenSwitch)  
         count+=1
+
+def lightSwitch(names):
+
+    #Change names to lowercase
+    namesLowerCase = []
+    for i in range(len(names)):
+        namesLowerCase.append(names[i].lower())
         
+    #If we want the lights to turn on, then loop through all the lights and turn them on
+    for i in range(len( lights)):
+        if(lights[i].is_on):
+            if( lights[i].name.lower() in namesLowerCase):
+                lights[i].off()
+        else:
+            if( lights[i].name.lower() in namesLowerCase):
+                lights[i].on()
+    
+
 #To bully family, uncomment the following line of code
 #This will turn the lights on and off repeatedly, waiting an amount of time in seconds equal to the variable passed between switching
 #bullyFamily(VARIABLE)
@@ -91,4 +108,6 @@ def bullyFamily_NameVersion(timeBetweenSwitch, names):
 #Example array of names: ['garderobe, kitchen top, dinner top']
 #List of names is sensitive to lower and upper case
 
-bullyFamily_NameVersion(0.7, names[user]) 
+#bullyFamily_NameVersion(0.7, names[user]) 
+
+lightSwitch(names[user])
