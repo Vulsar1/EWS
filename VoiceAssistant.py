@@ -97,17 +97,6 @@ class Assistant:
                 self.label.config(fg="black")
                 continue
 
-    def handle_intent(self, command):
-        # Implement logic to handle intents based on the command received
-        # You should parse the command and decide the appropriate response
-        # For simplicity, a basic example is shown here:
-        if "hello" in command:
-            return "Hello sir"
-        elif "create a file" in command or "new file" in command:
-            return "Creating a new file..."
-        #else:
-        #    return "I'm sorry, I don't understand that command."
     
     
 Assistant()
-
