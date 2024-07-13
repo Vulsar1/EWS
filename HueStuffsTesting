@@ -16,6 +16,15 @@ def toggleLights(on):
         
         lights = hue.get_lights()
         print(lights)
+        
+        #If we want the lights to turn on, then loop through all the lights and turn them on
+        if(on):
+            for i in range(len(lights)):
+                lights[i].on()
+        #If we do not want to turn the lights on, we loop through all the lights and turn them off
+        else:
+            for i in range(len(lights)):
+                lights[i].off()
 
         
 toggleLights(False)
