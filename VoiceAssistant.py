@@ -23,7 +23,7 @@ class Assistant:
 
 
         self.root = tk.Tk()
-        self.label = tk.Label(text="Jarvis", font=("Arial", 60, "bold"))  # What shows during the application in what font and size
+        self.label = tk.Label(text="J.A.R.V.I.S.", font=("Arial", 60, "bold"))  # What shows during the application in what font and size
         self.label.pack()
 
         threading.Thread(target=self.run_assistant).start()

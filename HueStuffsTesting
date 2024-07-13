@@ -5,7 +5,7 @@ import time
 import urllib3
 
 urllib3.disable_warnings()
-user=1 #1 if anne is user, 0 if raaf is user
+user=0 #1 if anne is user, 0 if raaf is user
 
 def bullyFamily(timeBetweenSwitch):              
     #Turn all light on/off every 5 seconds
@@ -95,7 +95,7 @@ def bullyFamily_NameVersion(timeBetweenSwitch, names):
 #listLights()
 
 #To turn lights on or off, uncomment the following line of code and change the variable in the function call to True/False
-#toggleAllLights(VARIABLE)
+#toggleAllLights(VARAIBLE)
 
 #To turn on lights only if they have a certain name, uncomment the following line of code and change the first variable to True/False and the second variable to an array of names
 #toggleLightsByName(VARIABLE1, VARIABLE2)
