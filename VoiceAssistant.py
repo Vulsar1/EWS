@@ -63,14 +63,14 @@ class Assistant:
                             sys.exit()
                         else:
                             if text:
-                                payload = {    "providers": "openai",   "text": text,    "chatbot_global_action": "Act as an assistant",    "previous_history": [],    "temperature": 0.0,    "max_tokens": 150,}
+                                payload = {    "providers": "perplexityai",   "text": text,    "chatbot_global_action": "Act as an assistant",    "previous_history": [],    "temperature": 0.0,    "max_tokens": 150,}
                                 
                                 # Handle intents directly if BasicAssistant does not have query method
                                 #response = self.handle_intent(text)  # Handle the recognized command
                                 
                                 queryResponse = requests.post(self.url, json=payload, headers=self.headers)
                                 result = json.loads(queryResponse.text)
-                                response = result['openai']['generated_text']
+                                response = result['perplexityai']['generated_text']
 
                                 print(f"Assistant response: {response}")
 
