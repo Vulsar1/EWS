@@ -1,0 +1,54 @@
+{
+    "intents" : [
+        {
+            "tag": "greeting",
+            "patterns": [
+                "Hi",
+                "Hey",
+                "Hello",
+                "How are you"
+            ],
+            "responses": [
+                "Hello sir",
+                "What can i do for you"
+            ]
+        },
+        {
+            "tag": "lights",
+            "patterns": [
+                "Can you turn on the lights",
+                "Please turn on the lights for me",
+                "Lights"
+                
+            ],
+            "responses": [
+                "Yes sir",
+                "I'm turning on the lights"
+                
+            ]
+        },
+        {
+            "tag": "name",
+            "patterns": [
+                "What is your name",
+                "What should i call you"
+              
+            ],
+            "responses": [
+                "You can call me Jarvis, sir",
+                "My name is Jarvis"
+            ]
+        },
+        {
+            "tag": "file",
+            "patterns": [
+                "Create a file",
+                "Create new file",
+                "Open a new file"
+            ],
+            "responses": []
+                
+        }
+        
+    ]
+}
