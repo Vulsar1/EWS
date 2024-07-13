@@ -5,25 +5,23 @@ import tkinter as tk
 import speech_recognition as sr
 import pyttsx3 as tts
 
+import json
+import requests
+
+
+
 from neuralintents import BasicAssistant
 
 class Assistant:
 
     def __init__(self):
+        
+        self.url = "https://api.edenai.run/v2/text/chat"
+        self.headers = {"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZTlhNTIwZmYtZmY4Mi00M2ViLTk0NzItNGZjNjU4YTFjZTJkIiwidHlwZSI6ImFwaV90b2tlbiJ9.QR7fQciG_xlWQRe2wEz9on1rmC4o3ukdoEkCZ27xB6M"}
         self.recognizer = sr.Recognizer()  # Recognizes sounds
         self.speaker = tts.init()  # Voice of assistant
         self.speaker.setProperty("rate", 150)
 
-        try:
-            # Initialize BasicAssistant with the path to the intents.json file
-            self.assistant = BasicAssistant("c:/Own code/EWS/Jarvis/intents.json")
-            print("Assistant initialized.")
-        except FileNotFoundError as e:
-            print(f"FileNotFoundError: {e}")
-            sys.exit(1)
-        except Exception as e:
-            print(f"Error initializing assistant: {e}")
-            sys.exit(1)
 
         self.root = tk.Tk()
         self.label = tk.Label(text="Jarvis", font=("Arial", 60, "bold"))  # What shows during the application in what font and size
@@ -66,8 +64,12 @@ class Assistant:
                             sys.exit()
                         else:
                             if text:
+                                response = {    "providers": "openai",   "text": text,    "chatbot_global_action": "Act as an assistant",    "previous_history": [],    "temperature": 0.0,    "max_tokens": 150,}
                                 # Handle intents directly if BasicAssistant does not have query method
-                                response = self.handle_intent(text)  # Handle the recognized command
+                                #response = self.handle_intent(text)  # Handle the recognized command
+
+
+
                                 print(f"Assistant response: {response}")
 
                                 if response:
@@ -106,4 +108,3 @@ class Assistant:
 
 Assistant()
 
-#yes
