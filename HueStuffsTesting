@@ -1,0 +1,17 @@
+from hue import Bridge, Light
+import asyncio
+from huesdk import Hue
+
+def toggleLights(on):
+        # Create a light object with the light id (number), Bridge IP and user
+        #light = Light(1, ip="192.168.2.1", user="hue-api-user")
+        #asyncio.run(Bridge.discover())
+        #asyncio.run(light.power_on())
+        
+        username = Hue.connect(bridge_ip="192.168.2.1")
+        print(username)
+        
+        #hue = Hue(bridge_ip="192.168.2.1", username=username)
+
+        
+toggleLights(False)
