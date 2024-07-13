@@ -101,7 +101,7 @@ class Assistant:
             return "Hello sir"
         elif "create a file" in command or "new file" in command:
             return "Creating a new file..."
-        else:
-            return "I'm sorry, I don't understand that command."
+        #else:
+        #    return "I'm sorry, I don't understand that command."
 
 Assistant()
