@@ -10,7 +10,6 @@ import requests
 
 
 
-
 class Assistant:
 
     def __init__(self):
@@ -20,7 +19,6 @@ class Assistant:
         self.recognizer = sr.Recognizer()  # Recognizes sounds
         self.speaker = tts.init()  # Voice of assistant
         self.speaker.setProperty("rate", 150)
-
 
         self.root = tk.Tk()
         self.label = tk.Label(text="J.A.R.V.I.S.", font=("Arial", 60, "bold"))  # What shows during the application in what font and size
@@ -73,7 +71,6 @@ class Assistant:
                                 response = result['perplexityai']['generated_text']
 
                                 print(f"Assistant response: {response}")
-
                                 if response:
                                     self.speaker.say(response)  # Speak the response
                                     self.speaker.runAndWait()  # Keep running to listen
