@@ -91,4 +91,4 @@ def bullyFamily_NameVersion(timeBetweenSwitch, names):
 #Example array of names: ['garderobe, kitchen top, dinner top']
 #List of names is sensitive to lower and upper case
 
-bullyFamily_NameVersion(0.7, names[user])
+bullyFamily_NameVersion(0.7, names[user]) 
