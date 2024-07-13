@@ -5,63 +5,37 @@ import time
 import urllib3
 
 urllib3.disable_warnings()
-user=0 #1 if anne is user, 0 if raaf is user
+user=1 #1 if anne is user, 0 if raaf is user
 
-def bullyFamily(timeBetweenSwitch):              
-    #Turn all light on/off every 5 seconds
-    count = 0
-    while True:
-        toggleAllLights(count%2==0)
-        time.sleep(timeBetweenSwitch)  
-        count+=1
+ips =["192.168.2.1","192.168.178.43"] #ips for raaf and anne respectively
+usernames = ["BDvoeSA0fV0VI6xiw1LHLVvUOIj3OABQHUgekwZ8", "su6nCGMRrINN5z0snp9lCl5V3Lzx-n6tPzX889bA"] #usernames for raaf and anne respectively
+names = [['hue play raaf', 'plafondlamp'], ['anne top']] #light names for raaf and anne respectively
 
+#Connect to hue bridge
+hue = Hue(bridge_ip= ips[user], username= usernames[ user])
+    
+#Retrieve lights
+lights = hue.get_lights()
+        
 def toggleAllLights(on):
-    ips=["192.168.2.1","192.168.178.43"]
-    usernames = ["BDvoeSA0fV0VI6xiw1LHLVvUOIj3OABQHUgekwZ8", "su6nCGMRrINN5z0snp9lCl5V3Lzx-n6tPzX889bA"]
-        
-    #Connect to hue bridge
-    hue = Hue(bridge_ip=ips[user], username=usernames[user])
-        
-    #Retrieve lights
-    lights = hue.get_lights()
-        
+    time.sleep(0.5)    
     #If we want the lights to turn on, then loop through all the lights and turn them on
     if(on):
-        for i in range(len(lights)):
-            lights[i].on()
+        for i in range(len( lights)):
+             lights[i].on()
     #If we do not want to turn the lights on, we loop through all the lights and turn them off
     else:
-        for i in range(len(lights)):
-            lights[i].off()
+        for i in range(len( lights)):
+             lights[i].off()
 
-def listLights():
-    ips=["192.168.2.1","192.168.178.43"]
-    usernames = ["BDvoeSA0fV0VI6xiw1LHLVvUOIj3OABQHUgekwZ8", "su6nCGMRrINN5z0snp9lCl5V3Lzx-n6tPzX889bA"]
-        
-    #Connect to hue bridge
-    hue = Hue(bridge_ip=ips[user], username=usernames[user])
-        
-    #Retrieve lights
-    lights = hue.get_lights()
-        
+def listLights(self):
+    lightNames = []
     #Print light names
-
-    for i in range(len(lights)):
-        print('\n',
-              " Light:      ", lights[i],'\n',
-              "Name of light:   ", lights[i].name, '\n'
-              " Id of light:  ", lights[i].id_, '\n')
+    for i in range(len( lights)):
+        lightNames.append( lights[i].name)
 
 def toggleLightsByName(on, names):
-    ips=["192.168.2.1","192.168.178.43"]
-    usernames = ["BDvoeSA0fV0VI6xiw1LHLVvUOIj3OABQHUgekwZ8", "su6nCGMRrINN5z0snp9lCl5V3Lzx-n6tPzX889bA"]
-        
-    #Connect to hue bridge
-    hue = Hue(bridge_ip=ips[user], username=usernames[user])
-        
-    #Retrieve lights
-    lights = hue.get_lights()
-        
+
     #Change names to lowercase
     namesLowerCase = []
     for i in range(len(names)):
@@ -69,24 +43,34 @@ def toggleLightsByName(on, names):
         
     #If we want the lights to turn on, then loop through all the lights and turn them on
     if(on):
-        for i in range(len(lights)):
-            if(lights[i].name.lower() in namesLowerCase):
-                lights[i].on()
+        for i in range(len( lights)):
+            if( lights[i].name.lower() in namesLowerCase):
+                 lights[i].on()
+                
     #If we do not want to turn the lights on, we loop through all the lights and turn them off
     else:
-        for i in range(len(lights)):
-            if(lights[i].name.lower() in namesLowerCase):
-                lights[i].off()
+        for i in range(len( lights)):
+            if( lights[i].name.lower() in namesLowerCase):
+                 lights[i].off()
 
+#Turn all light on/off every 5 seconds
+def bullyFamily(timeBetweenSwitch):  
+    time.sleep(0.5)    
+                
+    count = 0
+    while True:
+        toggleAllLights(count%2==0)
+        time.sleep(timeBetweenSwitch)  
+        count+=1
+
+#Turn all lights matching names on/off every 5 seconds
 def bullyFamily_NameVersion(timeBetweenSwitch, names):
-    #Turn all lights matching names on/off every 5 seconds
     count = 0
     while True:
         toggleLightsByName(count%2==0, names)
         time.sleep(timeBetweenSwitch)  
         count+=1
-
-
+        
 #To bully family, uncomment the following line of code
 #This will turn the lights on and off repeatedly, waiting an amount of time in seconds equal to the variable passed between switching
 #bullyFamily(VARIABLE)
@@ -95,7 +79,7 @@ def bullyFamily_NameVersion(timeBetweenSwitch, names):
 #listLights()
 
 #To turn lights on or off, uncomment the following line of code and change the variable in the function call to True/False
-#toggleAllLights(VARAIBLE)
+#toggleAllLights(VARIABLE)
 
 #To turn on lights only if they have a certain name, uncomment the following line of code and change the first variable to True/False and the second variable to an array of names
 #toggleLightsByName(VARIABLE1, VARIABLE2)
@@ -107,4 +91,4 @@ def bullyFamily_NameVersion(timeBetweenSwitch, names):
 #Example array of names: ['garderobe, kitchen top, dinner top']
 #List of names is sensitive to lower and upper case
 
-bullyFamily_NameVersion(0.7, ['anne top'])
+bullyFamily_NameVersion(0.7, names[user])
