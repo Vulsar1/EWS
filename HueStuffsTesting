@@ -78,7 +78,7 @@ def lightSwitch(names):
     for i in range(len(names)):
         namesLowerCase.append(names[i].lower())
         
-    #If we want the lights to turn on, then loop through all the lights and turn them on
+
     for i in range(len( lights)):
         if(lights[i].is_on):
             if( lights[i].name.lower() in namesLowerCase):

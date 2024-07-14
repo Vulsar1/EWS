@@ -8,7 +8,7 @@ class LightManager():
     def __init__(self) -> None:
         
         urllib3.disable_warnings()
-        self.user=1 #1 if anne is user, 0 if raaf is user
+        self.user=0 #1 if anne is user, 0 if raaf is user
         self.ips =["192.168.2.1","192.168.178.43"] #ips for raaf and anne respectively
         self.usernames = ["BDvoeSA0fV0VI6xiw1LHLVvUOIj3OABQHUgekwZ8", "su6nCGMRrINN5z0snp9lCl5V3Lzx-n6tPzX889bA"] #usernames for raaf and anne respectively
         
@@ -72,4 +72,21 @@ class LightManager():
             time.sleep(timeBetweenSwitch)  
             count+=1
 
+    
+    def lightSwitch(names):
+
+    #Change names to lowercase
+        namesLowerCase = []
+        for i in range(len(names)):
+            namesLowerCase.append(names[i].lower())
         
+
+        for i in range(len( lights)):
+            if(lights[i].is_on):
+                if( lights[i].name.lower() in namesLowerCase):
+                    lights[i].off()
+        else:
+            if( lights[i].name.lower() in namesLowerCase):
+                lights[i].on()
+
+    lightSwitch(names[user])
