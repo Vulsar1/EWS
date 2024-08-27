@@ -139,10 +139,17 @@ class Assistant:
                 self.label.config(fg="black")
                 continue
             
-    jarvisActivated = False
 
 
     
 Assistant()
 
+#====================================================================================================
+#       TO DO LIST
+#====================================================================================================
 
+#  have the summoning of jarvis and the command in the same sentence do the command
+#giving lam colour as a command
+#A command to close the program
+#It being a seperate launchable program, launchable without vscode
+#launch on startup?
